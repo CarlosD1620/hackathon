@@ -2,6 +2,49 @@
 const KEY_CULTIVO = 'cultivos'
 const KEY_SIEMBRA = 'siembra'
 const KEY_ESTADO = 'estado'
+
+//######################################################################
+//header
+// Configuración de las páginas
+const pages = {
+    index: `<h1>Inicio</h1><p>Bienvenido a la página principal.</p>`,
+    cultivos: `<h1>Cultivos</h1><p>Aquí puedes gestionar los cultivos registrados.</p>`,
+    siembras: `<h1>Siembras</h1><p>Aquí puedes gestionar las siembras registradas.</p>`,
+  };
+
+  // Generar dinámicamente el menú en el header
+  const header = document.getElementById('header');
+  header.innerHTML = `
+    <nav>
+      <a href="#" data-page="index" class="menu-item">Inicio</a>
+      <a href="#" data-page="cultivos" class="menu-item">Cultivos</a>
+      <a href="#" data-page="siembras" class="menu-item">Siembras</a>
+    </nav>
+  `;
+
+  // Función para cambiar el contenido dinámicamente
+  function navigateTo(page) {
+    const contentDiv = document.getElementById('content');
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    // Actualizar contenido
+    contentDiv.innerHTML = pages[page] || '<h1>404</h1><p>Página no encontrada.</p>';
+
+    // Actualizar estilos del menú
+    menuItems.forEach(item => {
+      item.classList.toggle('active', item.dataset.page === page);
+    });
+  }
+
+  // Evento para manejar clics en el menú
+  document.querySelector('header').addEventListener('click', event => {
+    if (event.target.classList.contains('menu-item')) {
+      event.preventDefault();
+      const page = event.target.dataset.page;
+      navigateTo(page);
+    }
+  });
+
 //######################################################################
 /**
  * Gestion de cultivos
@@ -152,3 +195,87 @@ function asignarEstadoSiembra(idSiembra, idEstado) {
         return false
     }
 }
+
+// Función para inicializar los estados
+function inicializarEstados() {
+    const estados = JSON.parse(localStorage.getItem('estados')) || [];
+
+    // Estados iniciales
+    const estadosIniciales = [
+        { _id: 1, _nombre: 'Arrar' },
+        { _id: 2, _nombre: 'Sembrado' },
+        { _id: 3, _nombre: 'Abonado' },
+        { _id: 4, _nombre: 'Cosechado' },
+    ];
+
+    // Si no hay estados en LocalStorage, los guardamos
+    if (estados.length === 0) {
+        localStorage.setItem('estados', JSON.stringify(estadosIniciales));
+        return estados
+    } else {
+        return []
+    }
+}
+
+
+
+// Mostrar el diálogo con los cultivos
+function mostrarDialogo(fecha) {
+    console.log(fecha)
+    const dialog = document.getElementById('cultivoDialog');
+    const dialogDate = document.getElementById('dialogDate');
+    const cultivosList = document.getElementById('cultivosList');
+
+    // Filtrar cultivos por la fecha seleccionada
+    const cultivosDelDia = cultivos.filter(c => c._fechaSiembra === fecha);
+
+    // Actualizar contenido del diálogo
+    dialogDate.textContent = fecha;
+    cultivosList.innerHTML = '';
+    if (cultivosDelDia.length > 0) {
+        cultivosDelDia.forEach(c => {
+            const li = document.createElement('li');
+            li.textContent = c._nombre;
+            cultivosList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement('li');
+        li.textContent = 'No hay cultivos registrados para este día.';
+        cultivosList.appendChild(li);
+    }
+
+    // Mostrar el diálogo
+    dialog.style.display = 'block';
+}
+
+// Cerrar el diálogo
+document.getElementById('closeDialog').onclick = function () {
+    document.getElementById('cultivoDialog').style.display = 'none';
+};
+
+// Cerrar el diálogo al hacer clic fuera de él
+window.onclick = function (event) {
+    const dialog = document.getElementById('cultivoDialog');
+    if (event.target === dialog) {
+        dialog.style.display = 'none';
+    }
+};
+
+
+// Agregar evento al clic en un día
+document.getElementById('calendar').addEventListener('click', function (e) {
+    const cell = e.target.closest('.toastui-calendar-weekday-grid');
+    if (cell) {
+      const fecha = cell.dataset.date;
+      if (fecha) {
+        mostrarDialogo(fecha);
+      }
+    } else {
+        console.log("Sin cell")
+    }
+    mostrarDialogo();
+  });
+
+  window.onload = function () {
+    navigateTo('index');
+  };
