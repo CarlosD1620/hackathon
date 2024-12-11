@@ -4,62 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SisteAgro</title>
+    <link rel="stylesheet" href="css/StylesSiembra.css">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="js/calendar.js"></script>
-    <script src="js/javascript.js"></script>
 </head>
 <body>
+    <header id="header"></header>
+<header id="header"></header>
     <div id="calendar"></div>
-     <header>
-        <h1>Gestión de Cultivos</h1>
-    </header>
+    <div id="dialog">
+        <button class="close-btn" onclick="closeDialog()">X</button>
+        <h3>Detalles del Cultivo</h3>
+        <p><strong>Nombre del Cultivo:</strong> <span id="cultivoNombre"></span></p>
+        <p><strong>Fecha de Registro:</strong> <span id="cultivoFechaRegistro"></span></p>
+        <p><strong>Fecha de Siembra:</strong> <span id="cultivoFechaSiembra"></span></p>
+        <p><strong>Nombre de Siembra:</strong> <span id="cultivoNombreSiembra"></span></p>
+        <p><strong>Estado:</strong> <span id="cultivoEstado"></span></p>
+      </div>
+<!-- Modal para cultivos -->
+<div id="cultivoDialog" class="modal">
+    <div class="modal-content">
+        <h3>Detalle de cultivo: <span id="dialogDate"></span></h3>
+        <span class="close" id="closeDialog">&times;</span>
+        <h3>Detalles del Cultivo</h3>
+        <p><strong>Nombre del Cultivo:</strong> <span id="cultivoNombre"></span></p>
+        <p><strong>Fecha de Registro:</strong> <span id="cultivoFechaRegistro"></span></p>
+        <p><strong>Fecha de Siembra:</strong> <span id="cultivoFechaSiembra"></span></p>
+        <p><strong>Nombre de Siembra:</strong> <span id="cultivoNombreSiembra"></span></p>
+        <p><strong>Estado:</strong> <span id="cultivoEstado"></span></p>
+      </div>
 
-    <main>
-        <!-- Lista de Cultivos -->
-        <section id="cultivos-lista">
-            <h2>Lista de Cultivos</h2>
-            <button id="btn-agregar-cultivo">Agregar Nuevo Cultivo</button>
-            <button id="btn-asignar-siembra" onclick="asignarSiembra(1, 101)">Asignar Siembra</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Fecha de Siembra</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-cultivos">
-                    <!-- Se llenará dinámicamente con JavaScript -->
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Formulario para Agregar/Editar Cultivos -->
-        <section id="formulario-cultivo" class="oculto">
-            <h2>Agregar/Editar Cultivo</h2>
-            <form id="form-cultivo">
-                <label for="nombre-cultivo">Nombre del Cultivo:</label>
-                <input type="text" id="nombre-cultivo" required>
-
-                
-                <label for="fecha-siembra">Fecha de Siembra:</label>
-                <input type="date" id="fecha-siembra" required>
-
-                <label for="estado-cultivo">Estado:</label>
-                <select id="estado-cultivo">
-                    <option value="planeado">Planeado</option>
-                    <option value="sembrado">Sembrado</option>
-                    <option value="en crecimiento">En Crecimiento</option>
-                </select>
-
-                <button type="submit">Guardar</button>
-                <button type="button" id="btn-cancelar">Cancelar</button>
-            </form>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
+    </div>
+  </div>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@toast-ui/calendar@latest/dist/toastui-calendar.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/@toast-ui/calendar@latest/dist/toastui-calendar.min.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="js/javascript.js"></script>
 </body>
 </html>
