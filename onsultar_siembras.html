@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Consultar Siembra</title>
+	<link rel="stylesheet" href="C:\Users\Administrador\Desktop\Hackaton\hackathon\css\StylesSiembra.css">
+</head>
+<body>
+	<div class="container">
+        <h1>Registro de Siembras</h1>
+        <form id="siembraForm">
+            <div class="form-group">
+                <label for="nombrePlanta">Nombre de la Planta:</label>
+                <input type="text" id="nombrePlanta" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaSiembra">Fecha de Siembra:</label>
+                <input type="date" id="fechaSiembra" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad de Plantas:</label>
+                <input type="number" id="cantidad" required>
+            </div>
+            <div class="form-group">
+                <label for="ubicacion">Ubicación de la Siembra:</label>
+                <input type="text" id="ubicacion" required>
+            </div>
+            <button type="submit">Registrar Siembra</button>
+        </form>
+
+        <h2>Siembras Registradas</h2>
+        <table id="siembrasTable">
+            <thead>
+                <tr>
+                    <th>Nombre de la Planta</th>
+                    <th>Fecha de Siembra</th>
+                    <th>Cantidad</th>
+                    <th>Ubicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los registros se agregarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
