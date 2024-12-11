@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,5 +11,55 @@
 </head>
 <body>
     <div id="calendar"></div>
+     <header>
+        <h1>Gestión de Cultivos</h1>
+    </header>
+
+    <main>
+        <!-- Lista de Cultivos -->
+        <section id="cultivos-lista">
+            <h2>Lista de Cultivos</h2>
+            <button id="btn-agregar-cultivo">Agregar Nuevo Cultivo</button>
+            <button id="btn-asignar-siembra" onclick="asignarSiembra(1, 101)">Asignar Siembra</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha de Siembra</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-cultivos">
+                    <!-- Se llenará dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Formulario para Agregar/Editar Cultivos -->
+        <section id="formulario-cultivo" class="oculto">
+            <h2>Agregar/Editar Cultivo</h2>
+            <form id="form-cultivo">
+                <label for="nombre-cultivo">Nombre del Cultivo:</label>
+                <input type="text" id="nombre-cultivo" required>
+
+                
+                <label for="fecha-siembra">Fecha de Siembra:</label>
+                <input type="date" id="fecha-siembra" required>
+
+                <label for="estado-cultivo">Estado:</label>
+                <select id="estado-cultivo">
+                    <option value="planeado">Planeado</option>
+                    <option value="sembrado">Sembrado</option>
+                    <option value="en crecimiento">En Crecimiento</option>
+                </select>
+
+                <button type="submit">Guardar</button>
+                <button type="button" id="btn-cancelar">Cancelar</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
