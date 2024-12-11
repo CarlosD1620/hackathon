@@ -16,34 +16,12 @@ const pages = {
   const header = document.getElementById('header');
   header.innerHTML = `
     <nav>
-      <a href="#" data-page="index" class="menu-item">Inicio</a>
-      <a href="#" data-page="cultivos" class="menu-item">Cultivos</a>
-      <a href="#" data-page="siembras" class="menu-item">Siembras</a>
+    
+      <a href="index.html" class="menu-item">Inicio</a>
+      <a href="onsultar_siembras.html" class="menu-item">Cultivos</a>
+      <a href="onsultar_siembras.html" data-page="siembras" class="menu-item">Siembras</a>
     </nav>
   `;
-
-  // Función para cambiar el contenido dinámicamente
-  function navigateTo(page) {
-    const contentDiv = document.getElementById('content');
-    const menuItems = document.querySelectorAll('.menu-item');
-
-    // Actualizar contenido
-    contentDiv.innerHTML = pages[page] || '<h1>404</h1><p>Página no encontrada.</p>';
-
-    // Actualizar estilos del menú
-    menuItems.forEach(item => {
-      item.classList.toggle('active', item.dataset.page === page);
-    });
-  }
-
-  // Evento para manejar clics en el menú
-  document.querySelector('header').addEventListener('click', event => {
-    if (event.target.classList.contains('menu-item')) {
-      event.preventDefault();
-      const page = event.target.dataset.page;
-      navigateTo(page);
-    }
-  });
 
 //######################################################################
 /**
@@ -248,10 +226,6 @@ function mostrarDialogo(fecha) {
     dialog.style.display = 'block';
 }
 
-// Cerrar el diálogo
-document.getElementById('closeDialog').onclick = function () {
-    document.getElementById('cultivoDialog').style.display = 'none';
-};
 
 // Cerrar el diálogo al hacer clic fuera de él
 window.onclick = function (event) {
@@ -275,7 +249,3 @@ document.getElementById('calendar').addEventListener('click', function (e) {
     }
     mostrarDialogo();
   });
-
-  window.onload = function () {
-    navigateTo('index');
-  };

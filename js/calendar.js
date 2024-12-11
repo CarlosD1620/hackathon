@@ -64,15 +64,3 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
 });
     
-// Cerrar el diálogo
-document.getElementById('closeDialog').onclick = function () {
-    document.getElementById('cultivoDialog').style.display = 'none';
-};
-
-// Cerrar el diálogo al hacer clic fuera de él
-window.onclick = function (event) {
-    const dialog = document.getElementById('cultivoDialog');
-    if (event.target === dialog) {
-        dialog.style.display = 'none';
-    }
-};
